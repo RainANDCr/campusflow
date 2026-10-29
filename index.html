@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="description" content="CampusFlow — 为中国大学生设计的跨平台智能课程表" />
+    <meta name="theme-color" content="#faf7f2" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <title>CampusFlow 课程表</title>
+    <script>
+      // 在 React 挂载前应用上次缓存的主题，避免闪烁。
+      // localStorage 仅作启动缓存，权威数据在 IndexedDB（Dexie preferences 表）。
+      (function () {
+        try {
+          var raw = localStorage.getItem("campusflow.settings");
+          if (!raw) return;
+          var s = JSON.parse(raw);
+          var v = s && s.state && s.state.settings ? s.state.settings : null;
+          if (!v) return;
+          var root = document.documentElement;
+          root.dataset.theme = v.themeId || "cream";
+          if (v.accent) root.dataset.accent = v.accent;
+          var mode = v.mode || "system";
+          var dark =
+            mode === "dark" ||
+            (mode === "system" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {
+          /* 忽略缓存读取失败 */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

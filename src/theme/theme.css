@@ -1,0 +1,475 @@
+@import "tailwindcss";
+
+/*
+ * CampusFlow 统一主题系统
+ * - 每个主题定义一套 CSS 变量（浅色 + 深色两套）
+ * - data-theme 选择主题，.dark 类选择深色模式，data-accent 选择强调色
+ * - Tailwind v4 通过 @theme inline 将变量映射为 bg-* / text-* 等工具类
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --font-sans:
+    "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI",
+    "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- 默认主题：奶油白 · 浅色 ---------- */
+:root {
+  --background: #faf7f1;
+  --foreground: #3d3a34;
+  --card: #ffffff;
+  --card-foreground: #3d3a34;
+  --muted: #f1ece2;
+  --muted-foreground: #8a8478;
+  --primary: #c2703d;
+  --primary-foreground: #ffffff;
+  --secondary: #f5efe4;
+  --secondary-foreground: #5c564b;
+  --border: #e8e1d4;
+  --ring: #c2703d;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark {
+  --background: #1c1917;
+  --foreground: #ede7dd;
+  --card: #262220;
+  --card-foreground: #ede7dd;
+  --muted: #2e2925;
+  --muted-foreground: #a8a096;
+  --primary: #e8a87c;
+  --primary-foreground: #3a2a1c;
+  --secondary: #302a26;
+  --secondary-foreground: #d8d0c4;
+  --border: #3a342e;
+  --ring: #e8a87c;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 樱花粉 ---------- */
+[data-theme="sakura"] {
+  --background: #fbf5f6;
+  --foreground: #443c40;
+  --card: #ffffff;
+  --card-foreground: #443c40;
+  --muted: #f5e8eb;
+  --muted-foreground: #93868c;
+  --primary: #d25e82;
+  --primary-foreground: #ffffff;
+  --secondary: #f7edf0;
+  --secondary-foreground: #6b5a60;
+  --border: #eddce1;
+  --ring: #d25e82;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark[data-theme="sakura"] {
+  --background: #201a1c;
+  --foreground: #f2e6ea;
+  --card: #2a2225;
+  --card-foreground: #f2e6ea;
+  --muted: #332a2d;
+  --muted-foreground: #b3a4aa;
+  --primary: #e8809f;
+  --primary-foreground: #3c1d27;
+  --secondary: #362c30;
+  --secondary-foreground: #e3d3d9;
+  --border: #40343a;
+  --ring: #e8809f;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 天空蓝 ---------- */
+[data-theme="sky"] {
+  --background: #f4f8fc;
+  --foreground: #35414d;
+  --card: #ffffff;
+  --card-foreground: #35414d;
+  --muted: #e9f0f8;
+  --muted-foreground: #7e8b99;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #ebf3fb;
+  --secondary-foreground: #4d5c6b;
+  --border: #dde7f2;
+  --ring: #3b82f6;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark[data-theme="sky"] {
+  --background: #10151c;
+  --foreground: #e4eaf2;
+  --card: #171e28;
+  --card-foreground: #e4eaf2;
+  --muted: #1e2733;
+  --muted-foreground: #9aa7b5;
+  --primary: #6d9eff;
+  --primary-foreground: #0f1e33;
+  --secondary: #212c3a;
+  --secondary-foreground: #d5deea;
+  --border: #2a3542;
+  --ring: #6d9eff;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 森林绿 ---------- */
+[data-theme="forest"] {
+  --background: #f3f8f3;
+  --foreground: #2f3b32;
+  --card: #ffffff;
+  --card-foreground: #2f3b32;
+  --muted: #e6f0e7;
+  --muted-foreground: #758578;
+  --primary: #2f855a;
+  --primary-foreground: #ffffff;
+  --secondary: #eaf3eb;
+  --secondary-foreground: #46584b;
+  --border: #d8e6da;
+  --ring: #2f855a;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark[data-theme="forest"] {
+  --background: #121812;
+  --foreground: #e3ece3;
+  --card: #1a211a;
+  --card-foreground: #e3ece3;
+  --muted: #212b21;
+  --muted-foreground: #9cab9d;
+  --primary: #5bb98a;
+  --primary-foreground: #0e2417;
+  --secondary: #263126;
+  --secondary-foreground: #d4e0d5;
+  --border: #2e3a2e;
+  --ring: #5bb98a;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 深夜星空 ---------- */
+[data-theme="starry"] {
+  --background: #f1f2fa;
+  --foreground: #3a3c55;
+  --card: #ffffff;
+  --card-foreground: #3a3c55;
+  --muted: #e8e9f5;
+  --muted-foreground: #7f82a0;
+  --primary: #6d6ae8;
+  --primary-foreground: #ffffff;
+  --secondary: #eaebf8;
+  --secondary-foreground: #4f5170;
+  --border: #dfe1f0;
+  --ring: #6d6ae8;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark[data-theme="starry"] {
+  --background: #0e0f1e;
+  --foreground: #e6e7f5;
+  --card: #161830;
+  --card-foreground: #e6e7f5;
+  --muted: #1e2040;
+  --muted-foreground: #a0a2c4;
+  --primary: #9b98ff;
+  --primary-foreground: #191938;
+  --secondary: #23254a;
+  --secondary-foreground: #d8d9f0;
+  --border: #2c2e56;
+  --ring: #9b98ff;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 极简黑白 ---------- */
+[data-theme="mono"] {
+  --background: #fafafa;
+  --foreground: #26262b;
+  --card: #ffffff;
+  --card-foreground: #26262b;
+  --muted: #f0f0f1;
+  --muted-foreground: #85858c;
+  --primary: #26262b;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f2f3;
+  --secondary-foreground: #4a4a52;
+  --border: #e5e5e8;
+  --ring: #26262b;
+  --destructive: #dc2626;
+  --success: #16a34a;
+}
+
+.dark[data-theme="mono"] {
+  --background: #131316;
+  --foreground: #ececef;
+  --card: #1c1c21;
+  --card-foreground: #ececef;
+  --muted: #26262c;
+  --muted-foreground: #9d9da6;
+  --primary: #ececef;
+  --primary-foreground: #131316;
+  --secondary: #2a2a31;
+  --secondary-foreground: #dcdce2;
+  --border: #333339;
+  --ring: #ececef;
+  --destructive: #ef4444;
+  --success: #4ade80;
+}
+
+/* ---------- 科技赛博（霓虹青紫） ---------- */
+[data-theme="cyber"] {
+  --background: #0d1117;
+  --foreground: #d6f6ff;
+  --card: #131a23;
+  --card-foreground: #d6f6ff;
+  --muted: #1a232e;
+  --muted-foreground: #6fb3c7;
+  --primary: #00e5ff;
+  --primary-foreground: #00232b;
+  --secondary: #17222d;
+  --secondary-foreground: #b8e8f5;
+  --border: #1f2c3a;
+  --ring: #00e5ff;
+  --destructive: #ff3860;
+  --success: #00ff9d;
+}
+
+.dark[data-theme="cyber"] {
+  --background: #080c11;
+  --foreground: #d6f6ff;
+  --card: #10171f;
+  --card-foreground: #d6f6ff;
+  --muted: #16202a;
+  --muted-foreground: #6fb3c7;
+  --primary: #00e5ff;
+  --primary-foreground: #00232b;
+  --secondary: #131d27;
+  --secondary-foreground: #b8e8f5;
+  --border: #1c2937;
+  --ring: #00e5ff;
+  --destructive: #ff3860;
+  --success: #00ff9d;
+}
+
+/* ---------- 像素风（复古掌机绿灰） ---------- */
+[data-theme="pixel"] {
+  --background: #e8e8d8;
+  --foreground: #2c3a24;
+  --card: #f5f5e8;
+  --card-foreground: #2c3a24;
+  --muted: #d8d8c0;
+  --muted-foreground: #6b7a58;
+  --primary: #5a8f29;
+  --primary-foreground: #ffffff;
+  --secondary: #e0e0cc;
+  --secondary-foreground: #4a5840;
+  --border: #c0c0a8;
+  --ring: #5a8f29;
+  --destructive: #c43a3a;
+  --success: #5a8f29;
+}
+
+.dark[data-theme="pixel"] {
+  --background: #1a2014;
+  --foreground: #d4e0c0;
+  --card: #232b1a;
+  --card-foreground: #d4e0c0;
+  --muted: #2e3822;
+  --muted-foreground: #94a680;
+  --primary: #8fc653;
+  --primary-foreground: #1a2014;
+  --secondary: #2c3520;
+  --secondary-foreground: #c4d4ac;
+  --border: #3a4630;
+  --ring: #8fc653;
+  --destructive: #e06c6c;
+  --success: #8fc653;
+}
+
+/* ---------- 秋叶橘（温暖落叶） ---------- */
+[data-theme="autumn"] {
+  --background: #faf4ec;
+  --foreground: #4a3826;
+  --card: #ffffff;
+  --card-foreground: #4a3826;
+  --muted: #f2e8d8;
+  --muted-foreground: #9a8468;
+  --primary: #d97706;
+  --primary-foreground: #ffffff;
+  --secondary: #f5ecdc;
+  --secondary-foreground: #6b563c;
+  --border: #eadfcc;
+  --ring: #d97706;
+  --destructive: #dc2626;
+  --success: #65a30d;
+}
+
+.dark[data-theme="autumn"] {
+  --background: #1e1710;
+  --foreground: #f0e4d0;
+  --card: #291f14;
+  --card-foreground: #f0e4d0;
+  --muted: #332818;
+  --muted-foreground: #bfa482;
+  --primary: #f59e0b;
+  --primary-foreground: #2b1a05;
+  --secondary: #382c1c;
+  --secondary-foreground: #e8d8bc;
+  --border: #42351f;
+  --ring: #f59e0b;
+  --destructive: #ef4444;
+  --success: #a3e635;
+}
+
+/* ---------- 课程配色板（12 色，RGB 三通道供 color-mix 使用，明暗模式通用） ---------- */
+:root {
+  --course-rose: 244 63 94;
+  --course-coral: 249 115 22;
+  --course-amber: 245 158 11;
+  --course-lemon: 234 179 8;
+  --course-lime: 132 204 22;
+  --course-emerald: 16 185 129;
+  --course-teal: 20 184 166;
+  --course-sky: 14 165 233;
+  --course-blue: 59 130 246;
+  --course-violet: 139 92 246;
+  --course-fuchsia: 217 70 239;
+  --course-graphite: 100 116 139;
+}
+
+/* ---------- 强调色（用户自定义，覆盖主题默认） ---------- */[data-accent="amber"] {
+  --accent: #f59e0b;
+  --accent-foreground: #451a03;
+}
+[data-accent="rose"] {
+  --accent: #f43f5e;
+  --accent-foreground: #ffffff;
+}
+[data-accent="blue"] {
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+}
+[data-accent="green"] {
+  --accent: #22c55e;
+  --accent-foreground: #052e16;
+}
+[data-accent="violet"] {
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+}
+[data-accent="orange"] {
+  --accent: #f97316;
+  --accent-foreground: #ffffff;
+}
+[data-accent="cyan"] {
+  --accent: #06b6d4;
+  --accent-foreground: #083344;
+}
+[data-accent="pink"] {
+  --accent: #ec4899;
+  --accent-foreground: #ffffff;
+}
+
+/* ---------- 基础样式 ---------- */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+}
+
+/* 安全区：底部导航在刘海屏设备上不被遮挡 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- 打印 / 导出 PDF ---------- */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  main {
+    overflow: visible !important;
+  }
+
+  /* 内容区占满页面 */
+  #root > div {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+}
+
+/* ---------- 轻二次元装饰（第一阶段：极淡强调色光晕，后续阶段扩展樱花/星空等） ---------- */
+[data-decorations="on"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      900px 320px at 50% -8%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 70%
+    );
+}
+
+[data-decorations="on"] #root {
+  position: relative;
+  z-index: 1;
+}
+
+/* 尊重系统“减少动态效果”设置（Framer Motion 之外的基础兜底） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
